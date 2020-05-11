@@ -1,0 +1,18 @@
+# Using this file is the same as:
+# docker run -p 3000:3000 -v /node_modules -v $(pwd):/app d63f55e40662
+version: "3"
+services:
+    app:
+        build:
+            context: .
+            dockerfile: Dockerfile.dev
+        ports:
+            - "3000:3000"
+        volumes:
+            - /app/node_modules
+            # Map the current folder outside the container to a folder inside the container:
+            - .:/app
+
+    # For Windows:
+    # environment:
+    #    - CHOKIDAR_USEPOLLING=true
