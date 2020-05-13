@@ -1,3 +1,4 @@
+language: generic
 sudo: required
 services:
     - docker
@@ -5,3 +6,7 @@ services:
 before_install:
     # Tag: -t docker-exercise
     - docker build -t docker-exercise -f Dockerfile.dev .
+
+script:
+    # -- --coverage exits the test suite
+    - docker run -e CI=true docker-react npm run test -- --coverage
