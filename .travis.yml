@@ -1,0 +1,7 @@
+sudo: required
+services:
+    - docker
+
+before_install:
+    # Tag: -t docker-exercise
+    - docker build -t docker-exercise -f Dockerfile.dev .
