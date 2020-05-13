@@ -9,4 +9,4 @@ before_install:
 
 script:
     # -- --coverage exits the test suite
-    - docker run -e CI=true docker-react npm run test -- --coverage
+    - docker run -e CI=true docker-exercise npm run test -- --coverage
