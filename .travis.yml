@@ -10,3 +10,27 @@ before_install:
 script:
     # -- --coverage exits the test suite
     - docker run -e CI=true docker-exercise npm run test -- --coverage
+
+deploy:
+    provider: elasticbeanstalk
+    # Location where the aws elastic beanstalk was created
+    # Check the url on aws interface
+    region: "us-west-2"
+    # The app name in aws
+    app: "docker"
+    env: "Docker-env"
+    # Get bucket name from aws S3
+    bucket_name: "elasticbeanstalk-us-west-2-1434155"
+    bucket_path: "docker"
+    on:
+        branch: master
+
+    # Get aws access key:
+    # On the aws interface -> services -> IAM
+    # Users -> Add user docker-react-travis-ci
+    # Programmatic access: true
+    # Set permissions -> Attach existing policies directly
+    # -> search beanstalk -> Provide full access to aws...
+    # Use Travis environment variables to store aws keys
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: $AWS_SECRET_KEY
