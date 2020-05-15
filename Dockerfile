@@ -2,6 +2,8 @@
 # First step tagged as builder
 FROM node:alpine as builder
 WORKDIR "/app"
+
+# Aws may require ./ instead of .
 COPY package.json .
 RUN npm install
 COPY . .
@@ -9,6 +11,11 @@ RUN npm run build
 
 # Second step
 FROM nginx
+# Aws elastic beanstalk needs exposed port
+EXPOSE 80
+
+# If the named builder step is not working
+# Try --from=0
 COPY --from=builder /app/build /usr/share/nginx/html
 # Default command of nginx is run
 
