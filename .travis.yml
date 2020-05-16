@@ -15,19 +15,20 @@ deploy:
     provider: elasticbeanstalk
     # Location where the aws elastic beanstalk was created
     # Check the url on aws interface
-    region: "us-west-2"
+    region: "us-east-2"
     # The app name in aws
     app: "docker"
     env: "Docker-env"
     # Get bucket name from aws S3
-    bucket_name: "elasticbeanstalk-us-west-2-1434155"
+    bucket_name: "elasticbeanstalk-us-east-2-677257632842"
     bucket_path: "docker"
+    # This deploy will happen when merge to master branch
     on:
         branch: master
 
     # Get aws access key:
     # On the aws interface -> services -> IAM
-    # Users -> Add user docker-react-travis-ci
+    # Users -> Add user docker-travis-ci
     # Programmatic access: true
     # Set permissions -> Attach existing policies directly
     # -> search beanstalk -> Provide full access to aws...
