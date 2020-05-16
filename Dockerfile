@@ -1,6 +1,6 @@
 # Multi-step
 # First step tagged as builder
-FROM node:alpine as builder
+FROM node:alpine
 WORKDIR "/app"
 
 # Aws may require ./ instead of .
@@ -16,7 +16,7 @@ EXPOSE 80
 
 # If the named builder step is not working
 # Try --from=0
-COPY --from=builder /app/build /usr/share/nginx/html
+COPY --from=0 /app/build /usr/share/nginx/html
 # Default command of nginx is run
 
 # docker run -p 8080:80 container_id
